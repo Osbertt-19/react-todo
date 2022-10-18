@@ -11,9 +11,6 @@ export class Todo extends React.Component {
     addtodo: "",
     filter: "all",
   };
-  handleChange = (e) => {
-    this.setState({ addtodo: e.target.value });
-  };
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({
@@ -59,11 +56,7 @@ export class Todo extends React.Component {
     }
     return (
       <div>
-        <AddTodo
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          value={this.state.addtodo}
-        />
+        <AddTodo handleSubmit={this.handleSubmit} />
         <Filter handleSelect={this.handleSelect} />
         <span>Currently {this.state.activetodos} todos are active.</span>
         <span>Todo List:</span>
