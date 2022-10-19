@@ -3,7 +3,7 @@
   --lightpurple: #d0bdf4;
   --darkpurple:#8458B3;
   --black:#494d5f;
-  --padding:10px;
+  --padding:20px;
   --borderradius:25px;
 }
 
@@ -19,7 +19,7 @@ form{
   display:flex;
   flex-direction: row;
   align-items: center;
-  
+  justify-content: center;
 }
 form>input{
   font-size:1em;
@@ -28,8 +28,7 @@ form>input{
   padding-left:15px;
   border-radius: 25px;
   border:none;
-  margin-left: 12px;
-  margin-right: 30px;
+  margin-right:10px;
 }
 form>input:focus{
   outline: none;
