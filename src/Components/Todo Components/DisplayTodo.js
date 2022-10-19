@@ -21,6 +21,7 @@ export default class DisplayTodo extends React.Component {
           {this.props.todo.id}. {this.props.todo.name}
         </span>
         {button}
+        <button onClick={(e)=>this.props.handleDelete(e,this.props.todo.id)}>Delete</button>
       </div>
     );
   }

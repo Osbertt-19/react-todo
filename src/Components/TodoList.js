@@ -1,15 +1,18 @@
 import React from "react";
-import { AddTodo } from "./AddTodo";
-import DisplayTodo from "./DisplayTodo";
-import { Filter } from "./Filter";
+import AddTodo from "./Todo Components/AddTodo";
+import DisplayTodo from "./Todo Components/DisplayTodo";
+import FilterTodo from "./Todo Components/FilterTodo";
 
-export class Todo extends React.Component {
+export default class Todo extends React.Component {
   state = {
     todos: [],
     i: 1,
     activetodos: 0,
-    addtodo: "",
     filter: "all",
+    addedValue: "",
+  };
+  handleChange = (e) => {
+    this.setState({ addedValue: e.target.value });
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ export class Todo extends React.Component {
         { id: this.state.i, name: e.target[0].value, done: false },
       ],
       activetodos: this.state.activetodos + 1,
-      addtodo: "",
+      addedValue: "",
     });
   };
 
@@ -42,7 +45,13 @@ export class Todo extends React.Component {
     }));
   };
 
-  handleSelect = (e) => {
+  handleDelete = (e, id) => {
+    this.setState({ todos: this.state.todos.filter((todo) => todo.id !== id) });
+  };
+  handleDeleteComplete = (e) => {
+    this.setState({ todos: this.state.todos.filter((todo) => todo.done===false) });
+  };
+  handleFilter = (e) => {
     this.setState({ filter: e.target.value });
   };
 
@@ -56,8 +65,13 @@ export class Todo extends React.Component {
     }
     return (
       <div>
-        <AddTodo handleSubmit={this.handleSubmit} />
-        <Filter handleSelect={this.handleSelect} />
+        <AddTodo
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          value={this.state.addedValue}
+        />
+        <FilterTodo handleFilter={this.handleFilter} />
+        <button onClick={this.handleDeleteComplete}>Delete Complete</button><br></br>
         <span>Currently {this.state.activetodos} todos are active.</span>
         <span>Todo List:</span>
         <div>
@@ -67,6 +81,7 @@ export class Todo extends React.Component {
                 todo={todo}
                 handleDone={this.handleDone}
                 handleUndone={this.handleUndone}
+                handleDelete={this.handleDelete}
               />
             </div>
           ))}

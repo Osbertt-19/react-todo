@@ -7,3 +7,9 @@
 .done{
   text-decoration:line-through;
 }
+.hide-todo{
+  display: none;
+}
+.show-todo{
+  display: block;
+}
