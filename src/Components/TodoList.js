@@ -27,7 +27,7 @@ export default class Todo extends React.Component {
     });
   };
 
-  handleDone = (e, id) => {
+  handleDone = (id) => {
     this.setState((prevState) => ({
       todos: prevState.todos.map((obj) =>
         obj.id === id ? Object.assign(obj, { done: true }) : obj
@@ -36,7 +36,7 @@ export default class Todo extends React.Component {
     }));
   };
 
-  handleUndone = (e, id) => {
+  handleUndone = (id) => {
     this.setState((prevState) => ({
       todos: prevState.todos.map((obj) =>
         obj.id === id ? Object.assign(obj, { done: false }) : obj
@@ -45,23 +45,25 @@ export default class Todo extends React.Component {
     }));
   };
 
-  handleDelete = (e, id) => {
+  handleDelete = (id) => {
     this.setState({ todos: this.state.todos.filter((todo) => todo.id !== id) });
   };
-  handleDeleteComplete = (e) => {
-    this.setState({ todos: this.state.todos.filter((todo) => todo.done===false) });
+  handleDeleteComplete = () => {
+    this.setState({
+      todos: this.state.todos.filter((todo) => !todo.done),
+    });
   };
-  handleFilter = (e) => {
-    this.setState({ filter: e.target.value });
+  handleFilter = (filter) => {
+    this.setState({ filter: filter });
   };
 
   render() {
     let todosToShow = this.state.todos;
     if (this.state.filter === "active") {
-      todosToShow = this.state.todos.filter((todo) => todo.done === false);
+      todosToShow = this.state.todos.filter((todo) => !todo.done);
     }
     if (this.state.filter === "complete") {
-      todosToShow = this.state.todos.filter((todo) => todo.done === true);
+      todosToShow = this.state.todos.filter((todo) => todo.done);
     }
     return (
       <div>
@@ -70,22 +72,24 @@ export default class Todo extends React.Component {
           handleChange={this.handleChange}
           value={this.state.addedValue}
         />
-        <FilterTodo handleFilter={this.handleFilter} />
-        <button onClick={this.handleDeleteComplete}>Delete Complete</button><br></br>
-        <span>Currently {this.state.activetodos} todos are active.</span>
-        <span>Todo List:</span>
-        <div>
-          {todosToShow.map((todo) => (
-            <div key={todo.id}>
+        <main>
+          <FilterTodo
+            handleFilter={this.handleFilter}
+            handleDeleteComplete={this.handleDeleteComplete}
+          />
+          <span>{this.state.activetodos} todos left to do.</span>
+          <div>
+            {todosToShow.map((todo) => (
               <DisplayTodo
+                key={todo.id}
                 todo={todo}
                 handleDone={this.handleDone}
                 handleUndone={this.handleUndone}
                 handleDelete={this.handleDelete}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </main>
       </div>
     );
   }
