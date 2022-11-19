@@ -1,11 +1,8 @@
 :root{
-  --blue: #a0d2eb;
-  --lightpurple: #d0bdf4;
-  --darkpurple:#8458B3;
-  --black:#494d5f;
-  --padding:20px;
-  --borderradius:25px;
+  --tigerLily:#F49586;
 }
+
+
 
 .not-done{
   text-decoration: none;
@@ -14,7 +11,6 @@
   text-decoration:line-through;
 }
 form{
-  height:11.111vh;
   border-radius: var(--borderradius);
   display:flex;
   flex-direction: row;
@@ -22,11 +18,9 @@ form{
   justify-content: center;
 }
 form>input{
-  font-size:1em;
   width: 350px;
   padding:var(--padding);
   padding-left:15px;
-  border-radius: 25px;
   border:none;
   margin-right:10px;
 }

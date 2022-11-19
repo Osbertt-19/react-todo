@@ -67,17 +67,31 @@ export default class Todo extends React.Component {
     }
     return (
       <div>
-        <AddTodo
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          value={this.state.addedValue}
-        />
-        <main>
+        <h1
+          style={{
+            textAlign: "center",
+            fontFamily: "monospace",
+            fontSize: "3em",
+          }}
+        >
+          Todo App
+        </h1>
+        <main
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "450px",
+            margin: "0 auto",
+            gap: "5px",
+            border: "1px solid black",
+            padding: "10px",
+          }}
+        >
           <FilterTodo
             handleFilter={this.handleFilter}
             handleDeleteComplete={this.handleDeleteComplete}
+            activetodos={this.state.activetodos}
           />
-          <span>{this.state.activetodos} todos left to do.</span>
           <div>
             {todosToShow.map((todo) => (
               <DisplayTodo
@@ -89,6 +103,11 @@ export default class Todo extends React.Component {
               />
             ))}
           </div>
+          <AddTodo
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            value={this.state.addedValue}
+          />
         </main>
       </div>
     );
