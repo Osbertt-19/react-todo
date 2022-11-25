@@ -46,7 +46,7 @@ export default class FilterTodo extends React.Component {
       height: "200px",
       position: "absolute",
       top: "-10px",
-      right: "-150px",
+      right: "-220px",
     };
     const filterForSmallScr = {
       display: "flex",
@@ -55,14 +55,25 @@ export default class FilterTodo extends React.Component {
     };
     const filter = (
       <div style={this.state.matches ? filterForBigScr : filterForSmallScr}>
-        <button onClick={() => this.props.handleFilter("all")}>All</button>
-        <button onClick={() => this.props.handleFilter("active")}>
+        <button
+          className={`btn ${this.props.filter === "all" ? "active" : ""}`}
+          onClick={() => this.props.handleFilter("all")}
+        >
+          All
+        </button>
+        <button
+          className={`btn ${this.props.filter === "active" ? "active" : ""}`}
+          onClick={() => this.props.handleFilter("active")}
+        >
           Active
         </button>
-        <button onClick={() => this.props.handleFilter("complete")}>
+        <button
+          className={`btn ${this.props.filter === "complete" ? "active" : ""}`}
+          onClick={() => this.props.handleFilter("complete")}
+        >
           Complete
         </button>
-        <button onClick={this.props.handleDeleteComplete}>
+        <button className="btn" onClick={this.props.handleDeleteComplete}>
           Delete Complete
         </button>
       </div>
@@ -90,6 +101,7 @@ export default class FilterTodo extends React.Component {
               marginLeft: "auto",
               rotate: `${rotatationDegree}deg`,
               transition: "rotate 0.25s ease-in",
+              cursor: "pointer",
             }}
           >
             {toggle}

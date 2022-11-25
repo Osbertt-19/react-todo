@@ -3,7 +3,17 @@
 }
 
 
-
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 1.25em;
+  cursor: pointer;
+  display: inline-block;
+  font-family: monospace;
+  font-weight: 200;
+}
+.active, .btn:hover {background: #eee;}
 .not-done{
   text-decoration: none;
 }
@@ -23,6 +33,7 @@ form>input{
   padding-left:15px;
   border:none;
   margin-right:10px;
+  font-size: 1.25em;
 }
 form>input:focus{
   outline: none;
@@ -81,8 +92,6 @@ main>span{
   margin-left: auto;
   background-color: transparent;
   border: none;
-  display: none;
-}
-.card:hover .delete{
   display: inline-block;
 }
+

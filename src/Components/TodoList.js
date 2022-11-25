@@ -91,6 +91,7 @@ export default class Todo extends React.Component {
             handleFilter={this.handleFilter}
             handleDeleteComplete={this.handleDeleteComplete}
             activetodos={this.state.activetodos}
+            filter={this.state.filter}
           />
           <div>
             {todosToShow.map((todo) => (
